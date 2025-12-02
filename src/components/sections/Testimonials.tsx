@@ -57,7 +57,7 @@ export const Testimonials = () => {
           </p>
         </div>
 
-        <div className="overflow-x-auto pb-8">
+        <div className="overflow-x-hidden pb-8">
           <div className="flex gap-6 w-max animate-scroll">
             {[...testimonials, ...testimonials].map((testimonial, index) => (
               <motion.div
