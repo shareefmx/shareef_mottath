@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { NeuroButton } from "../ui/neuro-button";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import dashboardMockup from "@/assets/dashboard-mockup.png";
 
 export const Hero = () => {
   const ref = useRef(null);
@@ -26,21 +25,6 @@ export const Hero = () => {
         <NeuroButton variant="glow" size="lg">
           Get Started Free
         </NeuroButton>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="w-full max-w-6xl mx-auto"
-      >
-        <div className="relative rounded-3xl overflow-hidden glass-card p-2">
-          <img
-            src={dashboardMockup}
-            alt="Lunexa AI Trading Dashboard - Real-time crypto trading interface with advanced analytics"
-            className="w-full h-auto rounded-2xl"
-          />
-        </div>
       </motion.div>
     </section>
   );

@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import { List, X } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { NeuroButton } from "./ui/neuro-button";
 
 const navItems = [
-  { label: "Home", href: "#hero" },
-  { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Home", href: "/", isHash: false },
+  { label: "About Me", href: "/about", isHash: false },
+  { label: "Project", href: "/project", isHash: false },
+  { label: "Contact", href: "/contact", isHash: false },
 ];
 
 export const Navigation = () => {
@@ -24,14 +22,6 @@ export const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (href: string) => {
-    setIsMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <>
       <nav
@@ -40,26 +30,26 @@ export const Navigation = () => {
           isScrolled ? "blur-backdrop bg-background/60 shadow-lg" : "bg-transparent"
         )}
       >
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto pl-18 pr-4">
           <div className="flex items-center justify-between h-20">
-            <a href="#hero" className="text-2xl font-light tracking-tighter text-glow">
+            <Link to="/" className="text-2xl font-light tracking-tighter text-glow">
               Lunexa
-            </a>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
               {navItems.map((item) => (
-                <button
+                <Link
                   key={item.label}
-                  onClick={() => handleNavClick(item.href)}
-                  className="text-sm font-light text-foreground/80 hover:text-foreground transition-colors"
+                  to={item.href}
+                  className={cn(
+                    "text-sm font-light text-foreground/80 hover:text-foreground transition-colors",
+                    item.label === "Contact" && "mr-8"
+                  )}
                 >
                   {item.label}
-                </button>
+                </Link>
               ))}
-              <NeuroButton variant="glow" size="sm">
-                Get Started
-              </NeuroButton>
             </div>
 
             {/* Mobile Menu Button */}
@@ -86,17 +76,15 @@ export const Navigation = () => {
       >
         <div className="flex flex-col items-start gap-6 p-8 mt-20">
           {navItems.map((item) => (
-            <button
+            <Link
               key={item.label}
-              onClick={() => handleNavClick(item.href)}
+              to={item.href}
+              onClick={() => setIsMobileMenuOpen(false)}
               className="text-lg font-light text-foreground/80 hover:text-foreground transition-colors"
             >
               {item.label}
-            </button>
+            </Link>
           ))}
-          <NeuroButton variant="glow" className="w-full mt-4">
-            Get Started
-          </NeuroButton>
         </div>
       </div>
 
