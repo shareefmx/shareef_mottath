@@ -145,7 +145,7 @@ const projects = [
   },
 ];
 
-const categories = ["All", "MERN Stack", "React", "n8n", "Python", "Node.js", "ML", "AI"];
+const categories = ["All", "MERN Stack", "React", "n8n", "Python", "Data Visualization", "ML", "AI", "Other"];
 
 const Project = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -160,6 +160,12 @@ const Project = () => {
       return project.technologies.some(tech =>
         ["React", "Node.js", "MongoDB", "Express"].includes(tech)
       );
+    }
+
+    if (activeCategory === "Data Visualization") {
+      return project.technologies.some(tech =>
+        ["D3.js", "Grafana", "Kibana", "Data Visualization"].includes(tech)
+      ) || project.title.toLowerCase().includes("visualizer");
     }
 
     if (activeCategory === "ML" || activeCategory === "AI") {

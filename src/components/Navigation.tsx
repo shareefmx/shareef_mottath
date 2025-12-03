@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { List, X } from "@phosphor-icons/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -13,6 +13,8 @@ const navItems = [
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,8 +34,14 @@ export const Navigation = () => {
       >
         <div className="container mx-auto pl-18 pr-4">
           <div className="flex items-center justify-between h-20">
-            <Link to="/" className="text-2xl font-light tracking-tighter text-glow">
-              Lunexa
+            <Link
+              to="/"
+              className={cn(
+                "text-2xl font-light tracking-tighter text-glow transition-opacity duration-300",
+                isHome && !isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
+              )}
+            >
+              Shareef
             </Link>
 
             {/* Desktop Navigation */}
