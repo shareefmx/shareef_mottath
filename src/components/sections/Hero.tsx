@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { GithubLogo, LinkedinLogo, EnvelopeSimple, InstagramLogo, FacebookLogo, XLogo } from "@phosphor-icons/react";
+import { GithubLogo, LinkedinLogo, EnvelopeSimple, InstagramLogo, FacebookLogo, XLogo, DownloadSimple, Eye } from "@phosphor-icons/react";
+import heroPortrait from "../../assets/hero-portrait.png";
 
 export const Hero = () => {
   return (
@@ -48,17 +49,41 @@ export const Hero = () => {
               <XLogo size={24} weight="fill" />
             </a>
           </div>
+
+          <div className="flex gap-3 lg:gap-4 mt-6 lg:mt-8 mb-20 lg:mb-0">
+            <a
+              href="#"
+              className="group flex items-center gap-2 px-4 py-2 lg:px-6 lg:py-3 text-sm lg:text-base bg-primary text-primary-foreground rounded-full font-medium shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+            >
+              <DownloadSimple size={20} weight="bold" />
+              <span>Download CV</span>
+            </a>
+            <a
+              href="#"
+              className="group flex items-center gap-2 px-4 py-2 lg:px-6 lg:py-3 text-sm lg:text-base bg-white border-2 border-primary text-primary rounded-full font-medium shadow-lg hover:bg-primary hover:text-primary-foreground hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+            >
+              <Eye size={20} weight="bold" />
+              <span>View CV</span>
+            </a>
+          </div>
         </motion.div>
       </div>
 
       {/* Right Section (Website Color) */}
-      <div className="w-full lg:w-[45%] bg-background flex flex-col relative min-h-[50vh] lg:min-h-screen">
+      <div className="w-full lg:w-[45%] bg-background flex flex-col relative min-h-[10vh] lg:min-h-screen">
         {/* Navigation for Desktop (Absolute positioned on top right) */}
         {/* Navigation removed as per user request */}
 
         {/* Image Container */}
         <div className="flex-grow flex items-end justify-center relative overflow-hidden">
-          {/* Image removed as per user request */}
+          <motion.img
+            src={heroPortrait}
+            alt="Shareef M"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="hidden lg:block w-auto h-[85%] object-contain relative z-10"
+          />
         </div>
       </div>
 
