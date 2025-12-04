@@ -1,12 +1,11 @@
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/sections/Hero";
 import { FeaturedIn } from "@/components/sections/FeaturedIn";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { HowItWorks } from "@/components/sections/HowItWorks";
+import { AboutMe } from "@/components/sections/AboutMe";
+import { Experience } from "@/components/sections/Experience";
+import { Projects } from "@/components/sections/Testimonials";
 import { Features } from "@/components/sections/Features";
 import { Mission } from "@/components/sections/Mission";
-import { Pricing } from "@/components/sections/Pricing";
-import { FAQ } from "@/components/sections/FAQ";
 import { Footer } from "@/components/sections/Footer";
 
 const Index = () => {
@@ -15,12 +14,11 @@ const Index = () => {
       <Navigation />
       <Hero />
       <FeaturedIn />
-      <Testimonials />
-      <HowItWorks />
+      <AboutMe />
+      <Experience />
       <Features />
+      <Projects />
       <Mission />
-      <Pricing />
-      <FAQ />
       <Footer />
     </div>
   );

@@ -2,28 +2,38 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { GlassCard, GlassCardContent, GlassCardHeader, GlassCardTitle, GlassCardDescription } from "../ui/glass-card";
-import { Brain, Shield, ChartLineUp, Lightning } from "@phosphor-icons/react";
+import { Code, HardDrives, Cloud, Database, Toolbox, TerminalWindow } from "@phosphor-icons/react";
 
-const features = [
+const skillCategories = [
   {
-    icon: Brain,
-    title: "Advanced AI Algorithms",
-    description: "Machine learning models trained on years of market data for optimal decision making.",
+    icon: Code,
+    title: "Frontend",
+    skills: "React.js, TypeScript, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS",
   },
   {
-    icon: Shield,
-    title: "Bank-Level Security",
-    description: "Your assets are protected with military-grade encryption and secure infrastructure.",
+    icon: HardDrives,
+    title: "Backend",
+    skills: "Node.js, Express.js, REST APIs, Server-side Rendering",
   },
   {
-    icon: ChartLineUp,
-    title: "Real-Time Analytics",
-    description: "Track your performance with detailed insights and comprehensive reporting tools.",
+    icon: Cloud,
+    title: "Cloud",
+    skills: "Google Cloud Platform, Microsoft Azure",
   },
   {
-    icon: Lightning,
-    title: "Lightning Fast Execution",
-    description: "Execute trades in milliseconds to capitalize on market opportunities instantly.",
+    icon: Database,
+    title: "Database",
+    skills: "MongoDB, MySQL (basic)",
+  },
+  {
+    icon: Toolbox,
+    title: "Tools & Platforms",
+    skills: "n8n, Git & GitHub, Hugging Face, Power BI, Microsoft Office Tools, VS Code, Cursor, Google Antigravity",
+  },
+  {
+    icon: TerminalWindow,
+    title: "Operating Systems",
+    skills: "Windows, Linux (Ubuntu)",
   },
 ];
 
@@ -31,42 +41,54 @@ export const Features = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
+    visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.5 } },
+  };
+
   return (
-    <section id="features" className="py-32 px-4 bg-background/50">
+    <section id="skills" className="py-20 px-4 bg-background/50">
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, filter: "blur(10px)" }}
-        animate={isInView ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0, filter: "blur(10px)" }}
-        transition={{ duration: 0.8 }}
-        className="container mx-auto"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        className="w-full max-w-6xl mx-auto"
       >
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-light tracking-tighter mb-4">
-            Powerful Features
+            Technical Skills
           </h2>
-          <p className="text-foreground/70 font-light">
-            Everything you need for successful crypto trading
-          </p>
+          
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {features.map((feature, index) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skillCategories.map((category, index) => (
             <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              key={category.title}
+              variants={itemVariants}
             >
-              <GlassCard className="h-full">
-                <GlassCardHeader>
-                  <div className="mb-4 w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                    <feature.icon size={24} weight="light" className="text-primary" />
+              <GlassCard className="h-full hover:bg-white/60 transition-colors duration-300">
+                <GlassCardHeader className="pb-2">
+                  <div className="mb-3 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <category.icon size={20} weight="duotone" className="text-primary" />
                   </div>
-                  <GlassCardTitle className="text-xl mb-2">{feature.title}</GlassCardTitle>
+                  <GlassCardTitle className="text-lg font-semibold">{category.title}</GlassCardTitle>
                 </GlassCardHeader>
                 <GlassCardContent>
-                  <GlassCardDescription className="text-base">
-                    {feature.description}
+                  <GlassCardDescription className="text-sm leading-relaxed text-gray-600">
+                    {category.skills}
                   </GlassCardDescription>
                 </GlassCardContent>
               </GlassCard>

@@ -33,11 +33,11 @@ export const Hero = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="max-w-xl"
+          className="w-full max-w-xl mx-auto"
         >
           {/* Logo removed as per user request */}
 
-          <motion.h2 variants={itemVariants} className="text-2xl font-medium text-gray-600 mb-2">Hi, I am</motion.h2>
+          <motion.h2 variants={itemVariants} className="text-2xl font-medium text-gray-600 mb-2 ">Hi, I am</motion.h2>
           <motion.h1 variants={itemVariants} className="text-6xl lg:text-8xl font-bold text-black tracking-tight mb-4 ">
             Shareef M
           </motion.h1>
