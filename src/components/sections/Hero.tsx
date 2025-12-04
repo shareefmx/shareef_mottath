@@ -46,28 +46,28 @@ export const Hero = () => {
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex gap-4 flex-wrap">
-            <a href="#" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
+            <a href="mailto:shareefmottath@outlook.com" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
               <EnvelopeSimple size={24} weight="fill" />
             </a>
-            <a href="#" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
+            <a href="https://github.com/shareefmx" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
               <GithubLogo size={24} weight="fill" />
             </a>
-            <a href="#" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
+            <a href="https://www.linkedin.com/in/shareefmottath" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
               <LinkedinLogo size={24} weight="fill" />
             </a>
             {/* Hugging Face */}
-            <a href="#" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
+            <a href="https://huggingface.co/shareefmx" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM9 10C9 10.55 8.55 11 8 11C7.45 11 7 10.55 7 10C7 9.45 7.45 9 8 9C8.55 9 9 9.45 9 10ZM17 10C17 10.55 16.55 11 16 11C15.45 11 15 10.55 15 10C15 9.45 15.45 9 16 9C16.55 9 17 9.45 17 10ZM12 17.5C14.33 17.5 16.31 16.04 17.11 14H6.89C7.69 16.04 9.67 17.5 12 17.5Z" />
               </svg>
             </a>
-            <a href="#" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
+            <a href="https://www.instagram.com/shareef_m._/" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
               <InstagramLogo size={24} weight="fill" />
             </a>
-            <a href="#" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
+            <a href="https://www.facebook.com/shareef.mottath" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
               <FacebookLogo size={24} weight="fill" />
             </a>
-            <a href="#" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
+            <a href="https://x.com/muhd_shareef_m?s=21" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
               <XLogo size={24} weight="fill" />
             </a>
           </motion.div>
