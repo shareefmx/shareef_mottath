@@ -7,7 +7,7 @@ const About = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      
+
       <main className="pt-32 pb-20 px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -16,57 +16,73 @@ const About = () => {
           className="container mx-auto max-w-4xl"
         >
           <h1 className="text-5xl md:text-6xl font-light tracking-tighter mb-8 text-center">
-            About Lunexa
+            About Me
           </h1>
-          
+
           <div className="space-y-8">
             <GlassCard>
               <GlassCardContent className="p-8">
-                <h2 className="text-2xl font-light tracking-tight mb-4">Our Story</h2>
+
                 <p className="text-foreground/70 font-light leading-relaxed mb-4">
-                  Lunexa was founded in 2022 by a team of financial technologists and AI researchers who saw an opportunity to democratize sophisticated trading strategies. We witnessed how institutional investors leveraged advanced algorithms to gain market advantages, while individual traders were left behind.
+                  Hi, I'm <strong>Muhammed Shareef M</strong>. I graduated with a B.E. in Information Science & Engineering from New Horizon College of Engineering, Bengaluru. Originally from Kerala, I've been based in Bangalore for the last five years, immersing myself in the city's vibrant tech ecosystem.
+                </p>
+                <p className="text-foreground/70 font-light leading-relaxed mb-4">
+                  I am a <strong>MERN Stack Developer</strong> and <strong>Automation Specialist</strong> with a strong focus on building full-stack applications and API integrations. My goal is to leverage cutting-edge technology to create impactful digital solutions that drive efficiency and growth, constantly pushing the boundaries of what's possible with code and AI.
                 </p>
                 <p className="text-foreground/70 font-light leading-relaxed">
-                  We set out to change that by creating an AI-powered platform that puts institutional-grade trading tools in the hands of everyday traders. Today, Lunexa serves thousands of users worldwide, helping them achieve their financial goals through intelligent automation.
+                  Beyond my professional role, I am deeply passionate about <strong>AI Automation</strong> and "Vibe Coding". I've built over 30 automated workflows using n8n and published research on using Machine Learning for wildlife conservation. I love solving complex problems with C++ and Python, and in my free time, I enjoy watching series and movies and staying updated with the latest developments in technology.
                 </p>
               </GlassCardContent>
             </GlassCard>
 
             <GlassCard>
               <GlassCardContent className="p-8">
-                <h2 className="text-2xl font-light tracking-tight mb-4">Our Technology</h2>
-                <p className="text-foreground/70 font-light leading-relaxed mb-4">
-                  At the heart of Lunexa is a sophisticated AI engine that processes millions of data points every second. Our machine learning models are trained on years of historical market data and continuously adapt to changing conditions.
+                <h2 className="text-2xl font-light tracking-tight mb-4">Technologies</h2>
+                <p className="text-foreground/70 font-light leading-relaxed mb-6">
+                  My technical expertise is centered around the <strong>MERN Stack</strong> and <strong>AI Automation</strong>. I leverage a powerful suite of tools to build modern, efficient, and intelligent applications.
                 </p>
-                <p className="text-foreground/70 font-light leading-relaxed">
-                  We employ cutting-edge techniques including neural networks, sentiment analysis, and predictive modeling to identify profitable opportunities that would be impossible for humans to spot manually.
-                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h3 className="text-lg font-medium mb-2">Frontend & Backend</h3>
+                    <ul className="list-disc list-inside text-foreground/70 font-light space-y-1">
+                      <li>React.js, TypeScript, JavaScript (ES6+)</li>
+                      <li>Tailwind CSS, HTML5, CSS3</li>
+                      <li>Node.js, Express.js, REST APIs</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium mb-2">AI & Automation</h3>
+                    <ul className="list-disc list-inside text-foreground/70 font-light space-y-1">
+                      <li>n8n (30+ Workflows), Webhooks</li>
+                      <li>Machine Learning (YOLOv5, CNN)</li>
+                      <li>Prompt Engineering, Vibe Coding</li>
+                      <li>Google Gemini, Hugging Face APIs</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium mb-2">Tools & Cloud</h3>
+                    <ul className="list-disc list-inside text-foreground/70 font-light space-y-1">
+                      <li>Git & GitHub, VS Code, Cursor</li>
+                      <li>Google Cloud Platform, Microsoft Azure</li>
+                      <li>Google Antigravity</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium mb-2">Languages</h3>
+                    <ul className="list-disc list-inside text-foreground/70 font-light space-y-1">
+                      <li>English, Malayalam</li>
+                      <li>Tamil, Hindi</li>
+                    </ul>
+                  </div>
+                </div>
               </GlassCardContent>
             </GlassCard>
 
-            <GlassCard>
-              <GlassCardContent className="p-8">
-                <h2 className="text-2xl font-light tracking-tight mb-4">Our Values</h2>
-                <ul className="space-y-4">
-                  <li className="text-foreground/70 font-light leading-relaxed">
-                    <strong className="text-foreground">Transparency:</strong> We believe in clear communication about how our algorithms work and the risks involved in crypto trading.
-                  </li>
-                  <li className="text-foreground/70 font-light leading-relaxed">
-                    <strong className="text-foreground">Security:</strong> Your assets and data are protected with industry-leading security measures.
-                  </li>
-                  <li className="text-foreground/70 font-light leading-relaxed">
-                    <strong className="text-foreground">Innovation:</strong> We continuously research and implement the latest advancements in AI and blockchain technology.
-                  </li>
-                  <li className="text-foreground/70 font-light leading-relaxed">
-                    <strong className="text-foreground">Accessibility:</strong> We're committed to making sophisticated trading tools available to everyone, regardless of their background.
-                  </li>
-                </ul>
-              </GlassCardContent>
-            </GlassCard>
+
           </div>
         </motion.div>
       </main>
-      
+
       <Footer />
     </div>
   );
