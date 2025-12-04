@@ -15,12 +15,16 @@ export const Mission = () => {
         transition={{ duration: 0.8 }}
         className="container mx-auto max-w-4xl text-center"
       >
+
         
         <p className="text-lg md:text-xl text-foreground/70 font-light leading-relaxed mb-6">
-          We believe that sophisticated trading strategies shouldn't be reserved for hedge funds and institutional investors. That's why we built Lunexa - to democratize access to AI-powered trading tools and level the playing field for individual traders.
+          I designed and built this fully functional website from scratch, showcasing my technical programming skills and a passion for <strong>Vibe Coding</strong>. It is powered by a modern tech stack including <strong>React</strong>, <strong>TypeScript</strong>, and <strong>Tailwind CSS</strong>.
+        </p>
+        <p className="text-lg md:text-xl text-foreground/70 font-light leading-relaxed mb-6">
+          The development was accelerated with the help of <strong>Google Antigravity software</strong> for coding. I implemented a custom system where all data is fetched dynamically from <strong>Google Sheets</strong>, while every image and icon was uniquely created by <strong>Google Gemini</strong>.
         </p>
         <p className="text-lg md:text-xl text-foreground/70 font-light leading-relaxed">
-          Our advanced algorithms analyze millions of data points every second, identifying opportunities that would be impossible for humans to spot. We're committed to continuous innovation, ensuring our users always have access to the most cutting-edge trading technology.
+          This project is a testament to what can be achieved when engineering expertise meets advanced AI tools. It stands as a complete, self-made digital experience, built entirely on my own to push the boundaries of web development.
         </p>
       </motion.div>
     </section>

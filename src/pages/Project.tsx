@@ -84,10 +84,10 @@ const Project = () => {
           className="container mx-auto max-w-6xl"
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 text-center">
-            Our Projects
+            My Projects
           </h1>
           <p className="text-foreground/70 font-light text-center mb-8 sm:mb-12 text-sm sm:text-base">
-            Explore our innovative solutions and cutting-edge technologies
+            Explore my innovative solutions and cutting-edge technologies
           </p>
 
           {/* Royal Filter Menu */}

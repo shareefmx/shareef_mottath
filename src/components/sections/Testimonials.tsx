@@ -51,9 +51,7 @@ export const Projects = () => {
           <h2 className="text-4xl md:text-5xl font-light tracking-tighter mb-4">
             Projects
           </h2>
-          <p className="text-foreground/70 font-light">
-            Explore our innovative solutions and cutting-edge technologies
-          </p>
+         
         </div>
 
         <div className="overflow-x-hidden pb-8">

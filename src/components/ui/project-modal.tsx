@@ -8,22 +8,33 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { NeuroButton } from "@/components/ui/neuro-button";
-
-export interface Project {
-  icon: any;
-  title: string;
-  description: string;
-  detailedDescription: string;
-  githubUrl: string;
-  deployUrl: string;
-  technologies: string[];
-}
+import { type Project } from "@/lib/google-sheets";
 
 interface ProjectModalProps {
   isOpen: boolean;
   onClose: () => void;
   project: Project | null;
 }
+
+const HuggingFaceLogo = ({ size = 20, className = "" }: { size?: number, className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12z" />
+    <path d="M7 10.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0z" />
+    <path d="M14 10.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0z" />
+    <path d="M8 15.5c.5 1.5 2 2.5 4 2.5s3.5-1 4-2.5" />
+  </svg>
+);
 
 export const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
   if (!project) return null;
@@ -74,23 +85,39 @@ export const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) =>
             </div>
           </div>
 
-          <DialogFooter className="flex gap-3 mt-6 sm:mt-8 sm:gap-4">
-            <NeuroButton
-              variant="outline"
-              onClick={() => window.open(project.githubUrl, '_blank')}
-              className="flex items-center gap-2 sm:text-base sm:px-6 sm:py-3"
-            >
-              <GithubLogo size={20} />
-              View on GitHub
-            </NeuroButton>
-            <NeuroButton
-              variant="glow"
-              onClick={() => window.open(project.deployUrl, '_blank')}
-              className="flex items-center gap-2 sm:text-base sm:px-6 sm:py-3"
-            >
-              <Link size={20} />
-              Live Demo
-            </NeuroButton>
+          <DialogFooter className="flex gap-3 mt-6 sm:mt-8 sm:gap-4 flex-wrap">
+            {project.githubUrl && (
+              <NeuroButton
+                variant="outline"
+                onClick={() => window.open(project.githubUrl, '_blank')}
+                className="flex items-center gap-2 sm:text-base sm:px-6 sm:py-3"
+              >
+                <GithubLogo size={20} />
+                View on GitHub
+              </NeuroButton>
+            )}
+
+            {project.deployUrl && (
+              <NeuroButton
+                variant="glow"
+                onClick={() => window.open(project.deployUrl, '_blank')}
+                className="flex items-center gap-2 sm:text-base sm:px-6 sm:py-3"
+              >
+                <Link size={20} />
+                Live Demo
+              </NeuroButton>
+            )}
+
+            {project.huggingFaceUrl && (
+              <NeuroButton
+                variant="outline"
+                onClick={() => window.open(project.huggingFaceUrl, '_blank')}
+                className="flex items-center gap-2 sm:text-base sm:px-6 sm:py-3"
+              >
+                <HuggingFaceLogo size={20} />
+                Hugging Face
+              </NeuroButton>
+            )}
           </DialogFooter>
 
 

@@ -8,6 +8,7 @@ export interface Project {
     detailedDescription: string;
     githubUrl: string;
     deployUrl: string;
+    huggingFaceUrl?: string;
     technologies: string[];
 }
 
@@ -67,6 +68,7 @@ export const fetchProjects = async (): Promise<Project[]> => {
                             detailedDescription: row.detailedDescription,
                             githubUrl: row.githubUrl,
                             deployUrl: row.deployUrl,
+                            huggingFaceUrl: row.huggingface, // Note: CSV header is 'huggingface'
                             technologies: technologies,
                         };
                     });
