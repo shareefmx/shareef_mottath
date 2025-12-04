@@ -1,29 +1,51 @@
-import { motion } from "framer-motion";
-import { GithubLogo, LinkedinLogo, EnvelopeSimple, InstagramLogo, FacebookLogo, XLogo, DownloadSimple, Eye } from "@phosphor-icons/react";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { GithubLogo, LinkedinLogo, EnvelopeSimple, InstagramLogo, FacebookLogo, XLogo, DownloadSimple, Eye, X } from "@phosphor-icons/react";
 import heroPortrait from "../../assets/hero-portrait.png";
 
 export const Hero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
+    visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8 } },
+  };
+
   return (
     <section id="hero" className="min-h-screen flex flex-col lg:flex-row relative overflow-hidden bg-background">
       {/* Left Section (White) */}
       <div className="w-full lg:w-[55%] bg-white flex flex-col justify-center px-8 lg:px-20 py-20 lg:py-0 relative z-10 lg:clip-path-diagonal shadow-2xl">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
           className="max-w-xl"
         >
           {/* Logo removed as per user request */}
 
-          <h2 className="text-2xl font-medium text-gray-600 mb-2">Hi, I am</h2>
-          <h1 className="text-6xl lg:text-8xl font-bold text-black tracking-tight mb-4 ">
+          <motion.h2 variants={itemVariants} className="text-2xl font-medium text-gray-600 mb-2">Hi, I am</motion.h2>
+          <motion.h1 variants={itemVariants} className="text-6xl lg:text-8xl font-bold text-black tracking-tight mb-4 ">
             Shareef M
-          </h1>
-          <p className="text-xl text-gray-500 font-medium mb-8">
+          </motion.h1>
+          <motion.p variants={itemVariants} className="text-xl text-gray-500 font-medium mb-8">
             MERN Stack Developer | AI Automation Developer
-          </p>
+          </motion.p>
 
-          <div className="flex gap-4 flex-wrap">
+          <motion.div variants={itemVariants} className="flex gap-4 flex-wrap">
             <a href="#" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
               <EnvelopeSimple size={24} weight="fill" />
             </a>
@@ -48,11 +70,11 @@ export const Hero = () => {
             <a href="#" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
               <XLogo size={24} weight="fill" />
             </a>
-          </div>
+          </motion.div>
 
-          <div className="flex gap-3 lg:gap-4 mt-6 lg:mt-8 mb-20 lg:mb-0">
+          <motion.div variants={itemVariants} className="flex gap-3 lg:gap-4 mt-6 lg:mt-8 mb-20 lg:mb-0">
             <a
-              href="#"
+              href="https://drive.google.com/uc?export=download&id=1eneuROs2fUPfKQi1ItMfS3JdL_3IivnP"
               className="group flex items-center gap-2 px-4 py-2 lg:px-6 lg:py-3 text-sm lg:text-base bg-primary text-primary-foreground rounded-full font-medium shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
             >
               <DownloadSimple size={20} weight="bold" />
@@ -60,12 +82,16 @@ export const Hero = () => {
             </a>
             <a
               href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsModalOpen(true);
+              }}
               className="group flex items-center gap-2 px-4 py-2 lg:px-6 lg:py-3 text-sm lg:text-base bg-white border-2 border-primary text-primary rounded-full font-medium shadow-lg hover:bg-primary hover:text-primary-foreground hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
             >
               <Eye size={20} weight="bold" />
               <span>View CV</span>
             </a>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
 
@@ -79,9 +105,9 @@ export const Hero = () => {
           <motion.img
             src={heroPortrait}
             alt="Shareef M"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+            animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 50, filter: "blur(10px)" }}
+            transition={{ duration: 0.8, delay: 0.5 }}
             className="hidden lg:block w-auto h-[85%] object-contain relative z-10"
           />
         </div>
@@ -94,6 +120,25 @@ export const Hero = () => {
           }
         }
       `}</style>
+
+      {/* CV Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" onClick={() => setIsModalOpen(false)}>
+          <div className="relative w-full max-w-4xl h-[80vh] bg-white rounded-lg shadow-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 p-2 bg-white/80 rounded-full hover:bg-white text-gray-800 transition-colors z-10"
+            >
+              <X size={24} weight="bold" />
+            </button>
+            <iframe
+              src="https://drive.google.com/file/d/1eneuROs2fUPfKQi1ItMfS3JdL_3IivnP/preview"
+              className="w-full h-full border-0"
+              title="CV Preview"
+            />
+          </div>
+        </div>
+      )}
     </section >
   );
 };
