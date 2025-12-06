@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import signature from "../../assets/signature.png";
 
 export const Mission = () => {
   const ref = useRef(null);
@@ -16,7 +17,7 @@ export const Mission = () => {
         className="container mx-auto max-w-4xl text-center"
       >
 
-        
+
         <p className="text-lg md:text-xl text-foreground/70 font-light leading-relaxed mb-6">
           I designed and built this fully functional website from scratch, showcasing my technical programming skills and a passion for <strong>Vibe Coding</strong>. It is powered by a modern tech stack including <strong>React</strong>, <strong>TypeScript</strong>, and <strong>Tailwind CSS</strong>.
         </p>
@@ -26,7 +27,15 @@ export const Mission = () => {
         <p className="text-lg md:text-xl text-foreground/70 font-light leading-relaxed">
           This project is a testament to what can be achieved when engineering expertise meets advanced AI tools. It stands as a complete, self-made digital experience, built entirely on my own to push the boundaries of web development.
         </p>
+
+        <div className="mt-12 flex justify-center">
+          <img
+            src={signature}
+            alt="Shareef Signature"
+            className="h-24 md:h-32 opacity-80"
+          />
+        </div>
       </motion.div>
-    </section>
+    </section >
   );
 };
