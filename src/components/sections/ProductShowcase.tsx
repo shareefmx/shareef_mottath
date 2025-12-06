@@ -15,14 +15,14 @@ const products = [
         id: 2,
         name: "VibeCoder",
         icon: Robot,
-        link: "#",
+        link: "https://404-issue.vercel.app/",
         color: "text-purple-400"
     },
     {
         id: 3,
         name: "DevAssist",
         icon: Code,
-        link: "#",
+        link: "https://404-issue.vercel.app/",
         color: "text-green-400"
     }
 ];
