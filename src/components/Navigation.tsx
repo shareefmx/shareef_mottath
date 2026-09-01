@@ -7,6 +7,7 @@ const navItems = [
   { label: "Work", href: "/#work" },
   { label: "Skills", href: "/#skills" },
   { label: "Badges", href: "/#badges" },
+  { label: "Repos", href: "/#repositories" },
   { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
   { label: "Education", href: "/#education" },
@@ -58,7 +59,7 @@ export const Navigation = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-5 md:flex">
           {navItems.map((item) => {
             const isExternalHash = item.href.startsWith("/#");
             const isCurrentPageHash = location.pathname === "/" && isExternalHash;

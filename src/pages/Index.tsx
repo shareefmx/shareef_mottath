@@ -4,6 +4,7 @@ import { Principle } from "@/components/sections/Principle";
 import { SelectedWork } from "@/components/sections/SelectedWork";
 import { TechnicalSkills } from "@/components/sections/TechnicalSkills";
 import { Badges } from "@/components/sections/Badges";
+import { GitHubRepos } from "@/components/sections/GitHubRepos";
 import { AboutMe } from "@/components/sections/AboutMe";
 import { Experience } from "@/components/sections/Experience";
 import { Education } from "@/components/sections/Education";
@@ -21,6 +22,7 @@ const Index = () => {
         <SelectedWork />
         <TechnicalSkills />
         <Badges />
+        <GitHubRepos />
         <AboutMe />
         <Experience />
         <Education />

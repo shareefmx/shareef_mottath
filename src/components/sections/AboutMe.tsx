@@ -5,7 +5,7 @@ export const AboutMe = () => {
     <section id="about" className="py-24 md:py-32">
       <Reveal delay={0}>
         <div className="mb-12 flex items-baseline gap-4 border-b border-border pb-4">
-          <span className="font-mono text-xs text-signal">04</span>
+          <span className="font-mono text-xs text-signal">05</span>
           <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             About
           </h2>

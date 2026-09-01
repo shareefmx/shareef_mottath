@@ -56,7 +56,7 @@ export const Education = () => {
     <section id="education" className="py-24 md:py-32">
       <Reveal delay={0}>
         <div className="mb-12 flex items-baseline gap-4 border-b border-border pb-4">
-          <span className="font-mono text-xs text-signal">06</span>
+          <span className="font-mono text-xs text-signal">07</span>
           <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Education
           </h2>
