@@ -7,11 +7,11 @@ import { ArrowUpRight, Mail, Phone, MapPin } from "lucide-react";
 
 const links = [
   { name: "GitHub", href: "https://github.com/shareefmx" },
-  { name: "LinkedIn", href: "https://linkedin.com/in/shareef-mx" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/shareefmottath/" },
   { name: "LeetCode", href: "https://leetcode.com/u/Muhammed_Shareef" },
   { name: "Hugging Face", href: "https://huggingface.co/shareefmx" },
   { name: "X / Twitter", href: "https://x.com/muhd_shareef_m?s=21" },
-  { name: "Download CV", href: "https://drive.google.com/file/d/1eneuROs2fUPfKQi1ItMfS3JdL_3IivnP/view?usp=sharing" },
+  { name: "Download Resume", href: "https://drive.google.com/file/d/1eneuROs2fUPfKQi1ItMfS3JdL_3IivnP/view?usp=sharing" },
 ];
 
 const Contact = () => {

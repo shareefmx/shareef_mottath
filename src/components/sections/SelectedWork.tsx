@@ -11,7 +11,6 @@ interface ProjectItem {
   built: string;
   highlights: string[];
   tags: string[];
-  liveUrl?: string;
   sourceUrl?: string;
   paperUrl?: string;
 }
@@ -19,9 +18,9 @@ interface ProjectItem {
 const projects: ProjectItem[] = [
   {
     id: "mom-automation",
-    title: "AI-Powered MOM Automation Platform",
+    title: "AI-Powered Minutes of Meeting (MOM) Automation Platform",
     year: "2025",
-    subtitle: "Meeting transcription to structured action items",
+    subtitle: "Meeting conversations & transcripts to structured action intelligence",
     metric: "→ Automated minutes extraction in seconds",
     problem:
       "Meeting conversations and transcripts contain critical decisions, action items, and deadlines that get lost or require hours of tedious manual note-taking and follow-up tracking.",
@@ -32,13 +31,12 @@ const projects: ProjectItem[] = [
       "Automatic structured extraction of assignees, action deliverables, and completion deadlines",
       "High-performance backend in Rust & TypeScript with export capabilities to Markdown, Notion, and Slack",
     ],
-    tags: ["Rust", "TypeScript", "Python", "Shell", "LLM APIs", "React", "FastAPI"],
-    liveUrl: "https://github.com/shareefmx",
-    sourceUrl: "https://github.com/shareefmx",
+    tags: ["Rust", "TypeScript", "Python", "Shell", "LLM APIs", "FastAPI", "React"],
+    sourceUrl: "https://github.com/shareefmx/minomeet",
   },
   {
     id: "n8n-automations",
-    title: "Advanced Automation Workflows (30+ Systems)",
+    title: "Advanced Automation Workflows Using n8n & Zapier (30+ Systems Built)",
     year: "2025",
     subtitle: "Autonomous multi-step business orchestrations",
     metric: "→ 30+ production workflows across 15+ cloud integrations",
@@ -47,18 +45,18 @@ const projects: ProjectItem[] = [
     built:
       "Designed and deployed 30+ end-to-end automation workflows in n8n and Zapier. Integrated Gemini and other LLM APIs for automated text generation, image analysis, conversational flow control, scheduled jobs, and intelligent task routing across Google Cloud and Microsoft Azure.",
     highlights: [
-      "Leveraged 50+ specialized n8n nodes and 15+ third-party integrations (Gmail API, Google Sheets, Drive, Telegram, Notion, Slack, Azure)",
+      "Leveraged 50+ specialized n8n nodes and 15+ third-party integrations (Gmail API, Google Sheets, Drive, Telegram, Notion, Slack, Azure, REST APIs)",
       "Automated document processing and webhook-triggered event pipelines with resilient retry logic",
       "Cut repetitive manual operational tasks by ~40% with zero-downtime execution",
     ],
-    tags: ["n8n", "Zapier", "JavaScript", "Google Cloud", "Microsoft Azure", "AI Studio API (Gemini)", "Webhooks"],
+    tags: ["n8n", "Zapier", "JavaScript", "Google Cloud", "Microsoft Azure", "AI Studio API (Gemini)", "Webhooks", "REST APIs"],
     sourceUrl: "https://github.com/shareefmx",
   },
   {
     id: "wildlife-conflict",
     title: "Technologies for Alleviating Human-Wildlife Conflict",
     year: "2024",
-    subtitle: "IoT & Computer Vision early-warning defense system",
+    subtitle: "IoT & Computer Vision early-warning defense system (Published in IEEE)",
     metric: "→ Published in IEEE | ~85% detection accuracy",
     problem:
       "Human-wildlife conflicts in fringe forest areas result in severe property damage and loss of life due to the complete lack of automated, real-time perimeter detection and early warnings.",
@@ -69,25 +67,8 @@ const projects: ProjectItem[] = [
       "IoT sensor integration for perimeter surveillance and instantaneous alert dispatch",
       "Published the research in IEEE, detailing system architecture, dataset preprocessing, and ML pipeline",
     ],
-    tags: ["CNN", "YOLOv5", "IoT", "Python", "React.js", "Node.js", "Machine Learning"],
-    sourceUrl: "https://github.com/shareefmx",
-  },
-  {
-    id: "getbeds",
-    title: "GetBeds Healthcare Platform & Gemini AI Agent",
-    year: "2025",
-    subtitle: "Health-tech bed booking platform & automated AI triage",
-    metric: "→ ~25% UI load speed improvement | ~40% manual workflow cut",
-    problem:
-      "Hospital bed allocation and patient triage are plagued by slow manual coordination, fragmented administrative interfaces, and delayed patient responses.",
-    built:
-      "Developed and maintained the frontend for the GetBeds patient booking platform and admin dashboard, creating 40+ reusable components delivering 20+ responsive pages in ~40 days. Built and deployed a custom AI agent powered by Gemini 1.5 Flash designed around internal clinical specifications to automate patient inquiries and triage routing.",
-    highlights: [
-      "Built and deployed custom Gemini 1.5 Flash AI agent, reducing manual workflow handling by ~40% and improving accuracy to ~85%",
-      "Engineered 40+ reusable React & TypeScript components, boosting UI load performance by ~25%",
-      "Streamlined bed booking and real-time inventory management across hospital departments",
-    ],
-    tags: ["React", "TypeScript", "Tailwind CSS", "Gemini 1.5 Flash", "Node.js", "Express.js"],
+    tags: ["Convolutional Neural Network", "YOLOv5", "IoT", "Python", "React.js", "Node.js", "Machine Learning"],
+    paperUrl: "https://ieeexplore.ieee.org/document/10568876",
     sourceUrl: "https://github.com/shareefmx",
   },
 ];
@@ -126,14 +107,14 @@ export const SelectedWork = () => {
                 </p>
 
                 <div className="mt-6 flex flex-col gap-2">
-                  {project.liveUrl && (
+                  {project.paperUrl && (
                     <a
-                      href={project.liveUrl}
+                      href={project.paperUrl}
                       target="_blank"
                       rel="noreferrer"
                       className="group/link inline-flex w-max items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-foreground"
                     >
-                      <span className="link-underline">Live demo</span>
+                      <span className="link-underline">IEEE Paper</span>
                       <ArrowUpRight className="h-3.5 w-3.5 text-signal transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                     </a>
                   )}
@@ -145,17 +126,6 @@ export const SelectedWork = () => {
                       className="group/link inline-flex w-max items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-foreground"
                     >
                       <span className="link-underline">Source</span>
-                      <ArrowUpRight className="h-3.5 w-3.5 text-signal transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                    </a>
-                  )}
-                  {project.paperUrl && (
-                    <a
-                      href={project.paperUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group/link inline-flex w-max items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-foreground"
-                    >
-                      <span className="link-underline">IEEE Paper</span>
                       <ArrowUpRight className="h-3.5 w-3.5 text-signal transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                     </a>
                   )}
@@ -203,4 +173,3 @@ export const SelectedWork = () => {
     </section>
   );
 };
-

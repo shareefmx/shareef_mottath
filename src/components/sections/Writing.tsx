@@ -20,7 +20,7 @@ const articles: ArticleItem[] = [
       "Published research paper in IEEE detailing an IoT-based edge monitoring system with YOLOv5 and CNN models to detect human and wildlife movement in real time with ~85% accuracy.",
     date: "IEEE Published",
     tag: "Research Paper",
-    link: "https://github.com/shareefmx",
+    link: "https://ieeexplore.ieee.org/document/10568876",
     isExternal: true,
   },
   {
@@ -50,7 +50,7 @@ export const Writing = () => {
     <section id="writing" className="py-24 md:py-32">
       <Reveal delay={0}>
         <div className="mb-12 flex items-baseline gap-4 border-b border-border pb-4">
-          <span className="font-mono text-xs text-signal">04</span>
+          <span className="font-mono text-xs text-signal">06</span>
           <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Research & Writing
           </h2>

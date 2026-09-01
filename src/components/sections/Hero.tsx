@@ -109,7 +109,7 @@ export const Hero = () => {
               <GithubIcon />
             </a>
             <a
-              href="https://linkedin.com/in/shareef-mx"
+              href="https://www.linkedin.com/in/shareefmottath/"
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"

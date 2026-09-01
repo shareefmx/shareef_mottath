@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { label: "Work", href: "/#work" },
   { label: "About", href: "/#about" },
+  { label: "Skills", href: "/#skills" },
   { label: "Experience", href: "/#experience" },
   { label: "Research", href: "/#writing" },
   { label: "Contact", href: "/#contact" },
@@ -47,17 +48,17 @@ export const Navigation = () => {
       )}
     >
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        {/* Brand */}
+        {/* Brand with capital M and S */}
         <Link
           to="/"
           className="flex items-center gap-1 font-mono text-sm font-medium tracking-tight hover:text-signal transition-colors"
         >
-          muhammed shareef
+          Muhammed Shareef
           <span className="caret" aria-hidden="true"></span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {navItems.map((item) => {
             const isExternalHash = item.href.startsWith("/#");
             const isCurrentPageHash = location.pathname === "/" && isExternalHash;
@@ -94,7 +95,7 @@ export const Navigation = () => {
             rel="noreferrer"
             className="hidden font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:text-foreground sm:inline-flex items-center gap-1 group"
           >
-            <span>Résumé</span>
+            <span>Resume</span>
             <ArrowUpRight className="h-3.5 w-3.5 text-signal transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
 
@@ -137,7 +138,7 @@ export const Navigation = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="font-mono text-sm uppercase tracking-[0.15em] text-signal flex items-center gap-1.5 py-1"
               >
-                <span>Résumé</span>
+                <span>Resume</span>
                 <ArrowUpRight className="h-4 w-4" />
               </a>
             </div>
