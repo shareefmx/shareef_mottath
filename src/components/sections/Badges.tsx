@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Reveal } from "@/components/Reveal";
-import { Award, CheckCircle2, ArrowUpRight, Flame, Trophy, Code2 } from "lucide-react";
+import { Award, CheckCircle2, ArrowUpRight, Trophy, ChevronDown, ChevronUp } from "lucide-react";
 
 interface BadgeItem {
   title: string;
@@ -136,6 +137,17 @@ const leetcodeBadges: LeetCodeBadge[] = [
 ];
 
 export const Badges = () => {
+  const [showAllCertifications, setShowAllCertifications] = useState(false);
+  const [showAllLeetCode, setShowAllLeetCode] = useState(false);
+
+  const visibleCertifications = showAllCertifications
+    ? professionalBadges
+    : professionalBadges.slice(0, 8);
+
+  const visibleLeetCode = showAllLeetCode
+    ? leetcodeBadges
+    : leetcodeBadges.slice(0, 6);
+
   return (
     <section id="badges" className="py-24 md:py-32 border-t border-border">
       {/* Section Header */}
@@ -155,12 +167,14 @@ export const Badges = () => {
             <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-signal">
               // Professional & Cloud Credentials
             </h3>
-            <span className="font-mono text-xs text-muted-foreground">8 Verified Credentials</span>
+            <span className="font-mono text-xs text-muted-foreground">
+              {professionalBadges.length} Verified Credentials
+            </span>
           </div>
         </Reveal>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {professionalBadges.map((badge, index) => (
+          {visibleCertifications.map((badge, index) => (
             <Reveal
               key={badge.title + index}
               delay={index * 40}
@@ -213,6 +227,27 @@ export const Badges = () => {
             </Reveal>
           ))}
         </div>
+
+        {professionalBadges.length > 8 && (
+          <div className="mt-8 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setShowAllCertifications(!showAllCertifications)}
+              className="group inline-flex items-center gap-2 rounded-md border border-border bg-card/40 px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground cursor-pointer"
+            >
+              <span>
+                {showAllCertifications
+                  ? "Show Less ↑"
+                  : `Show All (${professionalBadges.length}) Credentials ↓`}
+              </span>
+              {showAllCertifications ? (
+                <ChevronUp className="h-3.5 w-3.5 text-signal transition-transform group-hover:-translate-y-0.5" />
+              ) : (
+                <ChevronDown className="h-3.5 w-3.5 text-signal transition-transform group-hover:translate-y-0.5" />
+              )}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* LeetCode Live Badges & Stats */}
@@ -244,7 +279,7 @@ export const Badges = () => {
         </Reveal>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {leetcodeBadges.map((badge, index) => (
+          {visibleLeetCode.map((badge, index) => (
             <Reveal
               key={badge.name + index}
               delay={index * 50}
@@ -257,8 +292,7 @@ export const Badges = () => {
                   className="h-full w-full object-contain"
                   loading="lazy"
                   onError={(e) => {
-                    // Fallback to trophy if image cannot be loaded
-                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.style.display = "none";
                   }}
                 />
               </div>
@@ -280,6 +314,27 @@ export const Badges = () => {
             </Reveal>
           ))}
         </div>
+
+        {leetcodeBadges.length > 6 && (
+          <div className="mt-8 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setShowAllLeetCode(!showAllLeetCode)}
+              className="group inline-flex items-center gap-2 rounded-md border border-border bg-card/40 px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground cursor-pointer"
+            >
+              <span>
+                {showAllLeetCode
+                  ? "Show Less ↑"
+                  : `Show All (${leetcodeBadges.length}) Badges ↓`}
+              </span>
+              {showAllLeetCode ? (
+                <ChevronUp className="h-3.5 w-3.5 text-signal transition-transform group-hover:-translate-y-0.5" />
+              ) : (
+                <ChevronDown className="h-3.5 w-3.5 text-signal transition-transform group-hover:translate-y-0.5" />
+              )}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
