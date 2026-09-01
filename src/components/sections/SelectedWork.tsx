@@ -19,7 +19,7 @@ const projects: ProjectItem[] = [
   {
     id: "mom-automation",
     title: "AI-Powered Minutes of Meeting (MOM) Automation Platform",
-    year: "2025",
+    year: "2026",
     subtitle: "Meeting conversations & transcripts to structured action intelligence",
     metric: "→ Automated minutes extraction in seconds",
     problem:
