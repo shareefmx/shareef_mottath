@@ -33,7 +33,7 @@ export const ContactSection = () => {
     <section id="contact" className="py-24 md:py-32">
       <Reveal delay={0}>
         <div className="mb-12 flex items-baseline gap-4 border-b border-border pb-4">
-          <span className="font-mono text-xs text-signal">07</span>
+          <span className="font-mono text-xs text-signal">06</span>
           <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Contact
           </h2>
@@ -48,7 +48,7 @@ export const ContactSection = () => {
               Working on something that needs to ship?
             </h2>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Open for full-time AI/ML & Full-Stack roles, freelance & contract projects — DM me. Email or any of the channels below works, and I read everything that comes in.
+              Open for full-time AI/ML & Full-Stack roles — DM me. Email or any of the channels below works, and I read everything that comes in.
             </p>
             <a
               href="mailto:shareefmottath@gmail.com"
@@ -84,4 +84,3 @@ export const ContactSection = () => {
     </section>
   );
 };
-

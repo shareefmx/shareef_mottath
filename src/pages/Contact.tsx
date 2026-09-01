@@ -46,7 +46,7 @@ const Contact = () => {
             Working on something that needs to ship?
           </h2>
           <p className="max-w-xl text-lg text-muted-foreground mb-16">
-            Open for full-time roles, freelance projects, and AI automation consulting. Reach out anytime.
+            Open for full-time AI/ML & Full-Stack roles. Reach out anytime.
           </p>
         </Reveal>
 

@@ -5,12 +5,11 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
   { label: "Skills", href: "/#skills" },
+  { label: "Badges", href: "/#badges" },
+  { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
-  { label: "Research", href: "/#writing" },
   { label: "Contact", href: "/#contact" },
-  { label: "Blog", href: "/blog" },
 ];
 
 const RESUME_URL = "https://drive.google.com/file/d/1eneuROs2fUPfKQi1ItMfS3JdL_3IivnP/view?usp=sharing";
