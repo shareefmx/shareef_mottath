@@ -57,7 +57,7 @@ export const About = () => {
                   <span className="font-mono text-xs uppercase text-foreground font-medium block mb-1">
                     Programming Languages
                   </span>
-                  <p className="text-muted-foreground">C, C++, Python, JavaScript (ES6+), TypeScript, Rust, Shell</p>
+                  <p className="text-muted-foreground">C, C++, Python, JavaScript (ES6+), TypeScript, Shell</p>
                 </div>
 
                 <div className="border-t border-border/50 pt-3">

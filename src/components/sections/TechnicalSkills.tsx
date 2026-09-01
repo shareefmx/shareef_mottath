@@ -8,7 +8,7 @@ interface SkillCategory {
 const skillCategories: SkillCategory[] = [
   {
     title: "Programming Languages",
-    skills: ["C", "C++", "Python", "JavaScript (ES6+)", "TypeScript", "Rust", "Shell"],
+    skills: ["C", "C++", "Python", "JavaScript (ES6+)", "TypeScript", "Shell"],
   },
   {
     title: "AI & Machine Learning",

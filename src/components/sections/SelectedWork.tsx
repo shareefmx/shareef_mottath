@@ -29,9 +29,9 @@ const projects: ProjectItem[] = [
     highlights: [
       "Multi-LLM pipeline for precise information extraction and contextual meeting summarization",
       "Automatic structured extraction of assignees, action deliverables, and completion deadlines",
-      "High-performance backend in Rust & TypeScript with export capabilities to Markdown, Notion, and Slack",
+      "High-performance backend in Python & TypeScript with export capabilities to Markdown, Notion, and Slack",
     ],
-    tags: ["Rust", "TypeScript", "Python", "Shell", "LLM APIs", "FastAPI", "React"],
+    tags: ["TypeScript", "Python", "Shell", "LLM APIs", "FastAPI", "React"],
     sourceUrl: "https://github.com/shareefmx/minomeet",
   },
   {
