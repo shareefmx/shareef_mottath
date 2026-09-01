@@ -7,9 +7,9 @@ export default {
   theme: {
   	container: {
   		center: true,
-  		padding: '2rem',
+  		padding: '1.5rem',
   		screens: {
-  			'2xl': '1400px'
+  			'2xl': '1280px'
   		}
   	},
   	extend: {
@@ -19,6 +19,10 @@ export default {
   			ring: 'hsl(var(--ring))',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+  			signal: {
+  				DEFAULT: 'hsl(var(--signal))',
+  				soft: 'hsl(var(--signal-soft))'
+  			},
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'
@@ -65,45 +69,22 @@ export default {
   		},
 		keyframes: {
 			'accordion-down': {
-				from: {
-					height: '0'
-				},
-				to: {
-					height: 'var(--radix-accordion-content-height)'
-				}
+				from: { height: '0' },
+				to: { height: 'var(--radix-accordion-content-height)' }
 			},
 			'accordion-up': {
-				from: {
-					height: 'var(--radix-accordion-content-height)'
-				},
-				to: {
-					height: '0'
-				}
+				from: { height: 'var(--radix-accordion-content-height)' },
+				to: { height: '0' }
 			},
-			'fade-in-up': {
-				'0%': {
-					opacity: '0',
-					transform: 'translateY(20px)'
-				},
-				'100%': {
-					opacity: '1',
-					transform: 'translateY(0)'
-				}
-			},
-			'glow': {
-				'0%, 100%': {
-					boxShadow: '0 0 20px hsl(var(--glow) / 0.3), 0 0 40px hsl(var(--glow) / 0.1)'
-				},
-				'50%': {
-					boxShadow: '0 0 30px hsl(var(--glow) / 0.5), 0 0 60px hsl(var(--glow) / 0.2)'
-				}
+			'blink': {
+				'0%, 50%': { opacity: '1' },
+				'50.01%, 100%': { opacity: '0' }
 			}
 		},
 		animation: {
 			'accordion-down': 'accordion-down 0.2s ease-out',
 			'accordion-up': 'accordion-up 0.2s ease-out',
-			'fade-in-up': 'fade-in-up 0.8s ease-out',
-			'glow': 'glow 2s ease-in-out infinite'
+			'blink': 'blink 1.1s step-end infinite'
 		},
   		boxShadow: {
   			'2xs': 'var(--shadow-2xs)',
@@ -116,6 +97,7 @@ export default {
   		},
 		fontFamily: {
 			sans: [
+				'Geist',
 				'Inter',
 				'ui-sans-serif',
 				'system-ui',
@@ -123,15 +105,27 @@ export default {
 				'BlinkMacSystemFont',
 				'Segoe UI',
 				'Roboto',
-				'Helvetica Neue',
-				'Arial',
-				'Noto Sans',
 				'sans-serif'
+			],
+			mono: [
+				'Geist Mono',
+				'ui-monospace',
+				'SFMono-Regular',
+				'Roboto Mono',
+				'Menlo',
+				'Monaco',
+				'monospace'
+			],
+			signature: [
+				'Caveat',
+				'cursive'
 			]
 		},
 		letterSpacing: {
 			tighter: '-0.05em',
-			tight: '-0.025em'
+			tight: '-0.025em',
+			wider: '0.05em',
+			widest: '0.1em'
 		}
   	}
   },

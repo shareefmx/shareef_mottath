@@ -1,18 +1,13 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/sections/Footer";
-import { motion } from "framer-motion";
-import { GlassCard, GlassCardContent } from "@/components/ui/glass-card";
-
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { Reveal } from "@/components/Reveal";
 import { useState, useEffect } from "react";
 import { ProjectModal } from "@/components/ui/project-modal";
 import { fetchProjects, type Project as ProjectType } from "@/lib/google-sheets";
-import { Loader2 } from "lucide-react";
+import { Loader2, ArrowUpRight } from "lucide-react";
 
-
-// Categories are kept static for now, or could be derived from data
-const categories = ["All", "MERN Stack", "React", "n8n", "Python", "Data Visualization", "ML", "AI", "Other"];
-
-
+const categories = ["All", "AI / LLMs", "Automation (n8n)", "MERN Stack", "Computer Vision", "Python"];
 
 const Project = () => {
   const [projects, setProjects] = useState<ProjectType[]>([]);
@@ -20,7 +15,6 @@ const Project = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
-  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     const loadProjects = async () => {
@@ -39,30 +33,44 @@ const Project = () => {
   const filteredProjects = projects.filter((project) => {
     if (activeCategory === "All") return true;
 
+    if (activeCategory === "AI / LLMs") {
+      return project.technologies.some((tech) =>
+        ["AI", "Machine Learning", "LLM", "Gemini", "OpenAI", "Prompt Engineering"].some((k) =>
+          tech.toLowerCase().includes(k.toLowerCase())
+        )
+      ) || project.title.toLowerCase().includes("ai") || project.title.toLowerCase().includes("mom");
+    }
+
+    if (activeCategory === "Automation (n8n)") {
+      return project.technologies.some((tech) =>
+        ["n8n", "Zapier", "Webhooks", "Automation"].some((k) =>
+          tech.toLowerCase().includes(k.toLowerCase())
+        )
+      ) || project.title.toLowerCase().includes("automation") || project.title.toLowerCase().includes("n8n");
+    }
+
     if (activeCategory === "MERN Stack") {
-      return project.technologies.some(tech =>
-        ["React", "Node.js", "MongoDB", "Express"].includes(tech)
+      return project.technologies.some((tech) =>
+        ["React", "Node.js", "MongoDB", "Express", "TypeScript"].some((k) =>
+          tech.toLowerCase().includes(k.toLowerCase())
+        )
       );
     }
 
-    if (activeCategory === "Data Visualization") {
-      return project.technologies.some(tech =>
-        ["D3.js", "Grafana", "Kibana", "Data Visualization"].includes(tech)
-      ) || project.title.toLowerCase().includes("visualizer");
+    if (activeCategory === "Computer Vision") {
+      return project.technologies.some((tech) =>
+        ["YOLOv5", "CNN", "OpenCV", "Vision", "IoT", "PyTorch"].some((k) =>
+          tech.toLowerCase().includes(k.toLowerCase())
+        )
+      ) || project.title.toLowerCase().includes("wildlife");
     }
 
-    if (activeCategory === "ML" || activeCategory === "AI") {
-      return project.technologies.some(tech =>
-        ["Python", "TensorFlow", "Scikit-learn", "AI", "Machine Learning"].includes(tech)
-      );
-    }
-
-    return project.technologies.some(tech =>
-      tech.toLowerCase() === activeCategory.toLowerCase()
+    return project.technologies.some((tech) =>
+      tech.toLowerCase().includes(activeCategory.toLowerCase())
     );
   });
 
-  const openProjectModal = (project) => {
+  const openProjectModal = (project: ProjectType) => {
     setSelectedProject(project);
     setIsModalOpen(true);
   };
@@ -73,89 +81,89 @@ const Project = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div id="top" className="relative min-h-screen">
       <Navigation />
 
-      <main className="flex-grow pt-24 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="container mx-auto max-w-6xl"
-        >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 text-center">
-            My Projects
-          </h1>
-          <p className="text-foreground/70 font-light text-center mb-8 sm:mb-12 text-sm sm:text-base">
-            Explore my innovative solutions and cutting-edge technologies
+      <main className="mx-auto max-w-5xl px-6 pt-32 pb-24 md:pt-40 md:pb-32">
+        <Reveal delay={0}>
+          <div className="mb-12 flex items-baseline gap-4 border-b border-border pb-4">
+            <span className="font-mono text-xs text-signal">01</span>
+            <h1 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              All Projects & Archive
+            </h1>
+          </div>
+
+          <h2 className="max-w-2xl text-balance text-3xl font-medium leading-tight tracking-tight sm:text-5xl mb-4">
+            Engineering intelligent systems & software.
+          </h2>
+          <p className="max-w-xl text-lg text-muted-foreground mb-12">
+            A comprehensive list of AI models, automation workflows, open-source repositories, and full-stack applications.
           </p>
 
-          {/* Royal Filter Menu */}
-          <div className="hidden sm:flex flex-wrap justify-center gap-3 mb-12 overflow-x-auto pb-4 sm:pb-0 px-2 scrollbar-hide">
+          {/* Category Filter */}
+          <div className="flex flex-wrap gap-2 mb-12">
             {categories.map((category) => (
               <button
                 key={category}
+                type="button"
                 onClick={() => setActiveCategory(category)}
-                className={`
-                  px-6 py-2.5 rounded-full text-sm sm:text-base font-medium transition-all duration-300 border backdrop-blur-md
-                  ${activeCategory === category
-                    ? "bg-primary/20 border-primary text-primary shadow-[0_0_20px_rgba(var(--primary-rgb),0.3)] scale-10"
-                    : "bg-white/5 border-white/10 text-foreground/60 hover:bg-white/10 hover:border-white/20 hover:text-foreground"
-                  }
-                `}
+                className={`font-mono text-xs px-3.5 py-1.5 rounded-full border transition-all ${
+                  activeCategory === category
+                    ? "bg-foreground text-background border-foreground font-medium"
+                    : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/40"
+                }`}
               >
                 {category}
               </button>
             ))}
           </div>
+        </Reveal>
 
-          {isLoading ? (
-            <div className="flex justify-center items-center py-20">
-              <Loader2 className="w-10 h-10 animate-spin text-primary" />
-            </div>
-          ) : (
-            <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 sm:gap-8">
-                {(isExpanded ? filteredProjects : filteredProjects.slice(0, 4)).map((project, index) => (
-                  <motion.div
-                    key={project.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    <GlassCard className="h-full cursor-pointer hover:shadow-[0_8px_30px_hsl(var(--glow)/0.15)] transition-all duration-300" onClick={() => openProjectModal(project)}>
-                      <GlassCardContent className="p-6 sm:p-8">
-                        <div className="mb-3 sm:mb-4 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                          <project.icon size={20} weight="light" className="text-primary sm:w-6 sm:h-6" />
-                        </div>
-                        <h2 className="text-xl sm:text-2xl font-light tracking-tight mb-3 sm:mb-4">{project.title}</h2>
-                        <p className="text-foreground/70 font-light leading-relaxed text-sm sm:text-base">
-                          {project.description}
-                        </p>
-                      </GlassCardContent>
-                    </GlassCard>
-                  </motion.div>
-                ))}
-              </div>
+        {isLoading ? (
+          <div className="flex justify-center items-center py-24">
+            <Loader2 className="w-8 h-8 animate-spin text-signal" />
+          </div>
+        ) : (
+          <div className="grid gap-6 sm:grid-cols-2">
+            {filteredProjects.map((project, index) => (
+              <Reveal key={project.title + index} as="article" delay={index * 40}>
+                <div
+                  onClick={() => openProjectModal(project)}
+                  className="group flex h-full cursor-pointer flex-col rounded-md border border-border bg-card/40 p-6 transition-colors hover:border-foreground/30"
+                >
+                  <div className="mb-4 flex items-center justify-between font-mono text-xs text-muted-foreground">
+                    <span className="text-signal">{project.technologies[0] || "AI/ML"}</span>
+                    <ArrowUpRight className="h-4 w-4 text-signal transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </div>
 
-              {filteredProjects.length > 4 && (
-                <div className="flex justify-center mt-12">
-                  <button
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    className="px-8 py-3 rounded-full bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 hover:border-primary/40 transition-all duration-300 backdrop-blur-sm"
-                  >
-                    {isExpanded ? "Show Less" : "View More"}
-                  </button>
+                  <h3 className="text-xl font-medium leading-snug tracking-tight text-foreground transition-colors group-hover:text-signal mb-2">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-sm leading-relaxed text-muted-foreground mb-6 line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  <div className="mt-auto flex flex-wrap gap-1.5 pt-4 border-t border-border/50">
+                    {project.technologies.slice(0, 4).map((tech, i) => (
+                      <span
+                        key={i}
+                        className="rounded-full border border-border px-2 py-0.5 font-mono text-[11px] text-muted-foreground"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              )}
-            </>
-          )}
-        </motion.div>
+              </Reveal>
+            ))}
+          </div>
+        )}
       </main>
 
       <Footer />
+      <ThemeToggle />
 
-      {/* Project Modal */}
       <ProjectModal
         isOpen={isModalOpen}
         onClose={closeProjectModal}
@@ -166,4 +174,3 @@ const Project = () => {
 };
 
 export default Project;
-

@@ -1,144 +1,173 @@
-import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { GithubLogo, LinkedinLogo, EnvelopeSimple, InstagramLogo, FacebookLogo, XLogo, DownloadSimple, Eye, X } from "@phosphor-icons/react";
-import heroPortrait from "../../assets/hero-portrait.png";
+import { Reveal } from "@/components/Reveal";
+import { ArrowRight, Mail } from "lucide-react";
+
+const HuggingFaceIcon = ({ className = "h-[18px] w-[18px]" }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+  >
+    <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10C22 6.48 17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-3-10c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm6 0c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-3 7.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
+  </svg>
+);
+
+const GithubIcon = ({ className = "h-[18px] w-[18px]" }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+    <path d="M9 18c-4.51 2-5-2-7-2" />
+  </svg>
+);
+
+const LinkedinIcon = ({ className = "h-[18px] w-[18px]" }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
+const LeetCodeIcon = ({ className = "h-[18px] w-[18px]" }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+  >
+    <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .271 4.763 5.276 5.276 0 0 0 1.213 1.572l3.488 3.033a1.442 1.442 0 0 0 .977.382h.001a1.43 1.43 0 0 0 1.011-.428l7.009-7.14a1.434 1.434 0 0 0 .428-1.025 1.436 1.436 0 0 0-.427-1.025l-4.103-4.178 3.593-3.663A1.42 1.42 0 0 0 15.228.438 1.385 1.385 0 0 0 13.483 0zm-2.88 7.283l3.655 3.722-6.578 6.702a2.43 2.43 0 0 1-.57.404l-3.488-3.033a2.41 2.41 0 0 1-.564-.737 2.457 2.457 0 0 1-.122-2.193c.123-.321.32-.613.565-.851l3.524-3.774 3.578-1.74zM16.14 12.986l-2.072 2.11 4.104 4.179a1.434 1.434 0 0 0 1.025.427 1.436 1.436 0 0 0 1.025-.427 1.434 1.434 0 0 0 .427-1.025 1.436 1.436 0 0 0-.427-1.025l-4.082-4.239z" />
+  </svg>
+);
 
 export const Hero = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8 } },
-  };
-
   return (
-    <section id="hero" className="min-h-screen flex flex-col lg:flex-row relative overflow-hidden bg-background">
-      {/* Left Section (White) */}
-      <div className="w-full lg:w-[55%] bg-white flex flex-col justify-center px-8 lg:px-20 py-20 lg:py-0 relative z-10 lg:clip-path-diagonal shadow-2xl">
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="w-full max-w-xl mx-auto"
-        >
-          {/* Logo removed as per user request */}
+    <section className="flex min-h-[88vh] flex-col justify-center pt-28">
+      {/* Eyebrow */}
+      <Reveal delay={0}>
+        <p className="eyebrow mb-8 flex items-center gap-3">
+          <span className="text-signal">●</span>
+          Open for AI/ML & Full-Stack roles — Get in touch
+        </p>
+      </Reveal>
 
-          <motion.h2 variants={itemVariants} className="text-2xl font-medium text-gray-600 mb-2 ">Hi, I am</motion.h2>
-          <motion.h1 variants={itemVariants} className="text-6xl lg:text-8xl font-bold text-black tracking-tight mb-4 ">
-            Shareef M
-          </motion.h1>
-          <motion.p variants={itemVariants} className="text-xl text-gray-500 font-medium mb-8">
-            MERN Stack Developer | AI Automation Developer
-          </motion.p>
+      {/* Main Headline */}
+      <Reveal delay={80}>
+        <h1 className="max-w-4xl text-balance text-4xl font-medium leading-[1.08] tracking-tight sm:text-6xl md:text-7xl">
+          I build AI systems and intelligent workflows that ship.
+          <span className="text-muted-foreground">
+            {" "}
+            LLMs, Generative AI, RAG pipelines, and full-stack production apps.
+          </span>
+        </h1>
+      </Reveal>
 
-          <motion.div variants={itemVariants} className="flex gap-4 flex-wrap">
-            <a href="mailto:shareefmottath@outlook.com" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
-              <EnvelopeSimple size={24} weight="fill" />
-            </a>
-            <a href="https://github.com/shareefmx" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
-              <GithubLogo size={24} weight="fill" />
-            </a>
-            <a href="https://www.linkedin.com/in/shareefmottath" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
-              <LinkedinLogo size={24} weight="fill" />
-            </a>
-            {/* Hugging Face */}
-            <a href="https://huggingface.co/shareefmx" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM9 10C9 10.55 8.55 11 8 11C7.45 11 7 10.55 7 10C7 9.45 7.45 9 8 9C8.55 9 9 9.45 9 10ZM17 10C17 10.55 16.55 11 16 11C15.45 11 15 10.55 15 10C15 9.45 15.45 9 16 9C16.55 9 17 9.45 17 10ZM12 17.5C14.33 17.5 16.31 16.04 17.11 14H6.89C7.69 16.04 9.67 17.5 12 17.5Z" />
-              </svg>
-            </a>
-            <a href="https://www.instagram.com/shareef_m._/" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
-              <InstagramLogo size={24} weight="fill" />
-            </a>
-            <a href="https://www.facebook.com/shareef.mottath" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
-              <FacebookLogo size={24} weight="fill" />
-            </a>
-            <a href="https://x.com/muhd_shareef_m?s=21" className="p-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors text-black">
-              <XLogo size={24} weight="fill" />
-            </a>
-          </motion.div>
+      {/* Bio paragraph */}
+      <Reveal delay={160}>
+        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          I'm <span className="text-foreground font-medium">Muhammed Shareef</span>, an AI/ML Engineer and MERN Stack Developer. Most of my work is building, deploying, and integrating AI models into production applications — custom LLM agents, RAG retrieval pipelines, 30+ automated workflows in n8n, and high-performance React frontends.
+        </p>
+      </Reveal>
 
-          <motion.div variants={itemVariants} className="flex gap-3 lg:gap-4 mt-6 lg:mt-8 mb-20 lg:mb-0">
+      {/* CTAs and Socials */}
+      <Reveal delay={240}>
+        <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+          <a
+            href="#work"
+            className="group inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
+          >
+            See selected work
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </a>
+
+          <div className="flex items-center gap-1">
             <a
-              href="https://drive.google.com/uc?export=download&id=1eneuROs2fUPfKQi1ItMfS3JdL_3IivnP"
-              className="group flex items-center gap-2 px-4 py-2 lg:px-6 lg:py-3 text-sm lg:text-base bg-primary text-primary-foreground rounded-full font-medium shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+              href="https://github.com/shareefmx"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              className="grid h-9 w-9 place-items-center rounded-md text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/50"
             >
-              <DownloadSimple size={20} weight="bold" />
-              <span>Download CV</span>
+              <GithubIcon />
             </a>
             <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                setIsModalOpen(true);
-              }}
-              className="group flex items-center gap-2 px-4 py-2 lg:px-6 lg:py-3 text-sm lg:text-base bg-white border-2 border-primary text-primary rounded-full font-medium shadow-lg hover:bg-primary hover:text-primary-foreground hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+              href="https://linkedin.com/in/shareef-mx"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="grid h-9 w-9 place-items-center rounded-md text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/50"
             >
-              <Eye size={20} weight="bold" />
-              <span>View CV</span>
+              <LinkedinIcon />
             </a>
-          </motion.div>
-        </motion.div>
-      </div>
-
-      {/* Right Section (Website Color) */}
-      <div className="w-full lg:w-[45%] bg-background flex flex-col relative min-h-[10vh] lg:min-h-screen">
-        {/* Navigation for Desktop (Absolute positioned on top right) */}
-        {/* Navigation removed as per user request */}
-
-        {/* Image Container */}
-        <div className="flex-grow flex items-end justify-center relative overflow-hidden">
-          <motion.img
-            src={heroPortrait}
-            alt="Shareef M"
-            initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
-            animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 50, filter: "blur(10px)" }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="hidden lg:block w-auto h-[85%] object-contain relative z-10"
-          />
-        </div>
-      </div>
-
-      <style>{`
-        @media (min-width: 1024px) {
-          .lg\\:clip-path-diagonal {
-            clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
-          }
-        }
-      `}</style>
-
-      {/* CV Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" onClick={() => setIsModalOpen(false)}>
-          <div className="relative w-full max-w-4xl h-[80vh] bg-white rounded-lg shadow-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 p-2 bg-white/80 rounded-full hover:bg-white text-gray-800 transition-colors z-10"
+            <a
+              href="mailto:shareefmottath@gmail.com"
+              rel="noreferrer"
+              aria-label="Email"
+              className="grid h-9 w-9 place-items-center rounded-md text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/50"
             >
-              <X size={24} weight="bold" />
-            </button>
-            <iframe
-              src="https://drive.google.com/file/d/1eneuROs2fUPfKQi1ItMfS3JdL_3IivnP/preview"
-              className="w-full h-full border-0"
-              title="CV Preview"
-            />
+              <Mail className="h-[18px] w-[18px]" />
+            </a>
+            <a
+              href="https://huggingface.co/shareefmx"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Hugging Face"
+              className="grid h-9 w-9 place-items-center rounded-md text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/50"
+            >
+              <HuggingFaceIcon />
+            </a>
+            <a
+              href="https://leetcode.com/u/Muhammed_Shareef"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LeetCode"
+              className="grid h-9 w-9 place-items-center rounded-md text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/50"
+            >
+              <LeetCodeIcon />
+            </a>
           </div>
         </div>
-      )}
-    </section >
+      </Reveal>
+
+      {/* Metrics Row */}
+      <Reveal delay={320}>
+        <dl className="mt-16 grid max-w-3xl grid-cols-2 gap-x-8 gap-y-6 border-t border-border pt-8 font-mono text-sm sm:grid-cols-4">
+          <div>
+            <dt className="text-2xl text-signal">30+</dt>
+            <dd className="mt-1 text-xs text-muted-foreground">automated n8n workflows built</dd>
+          </div>
+          <div>
+            <dt className="text-2xl text-signal">85%+</dt>
+            <dd className="mt-1 text-xs text-muted-foreground">accuracy in AI/ML pipelines</dd>
+          </div>
+          <div>
+            <dt className="text-2xl text-signal">40+</dt>
+            <dd className="mt-1 text-xs text-muted-foreground">reusable React components</dd>
+          </div>
+          <div>
+            <dt className="text-2xl text-signal">1</dt>
+            <dd className="mt-1 text-xs text-muted-foreground">IEEE published research paper</dd>
+          </div>
+        </dl>
+      </Reveal>
+    </section>
   );
 };

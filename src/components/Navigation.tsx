@@ -1,20 +1,23 @@
 import { useState, useEffect } from "react";
-import { List, X } from "@phosphor-icons/react";
 import { Link, useLocation } from "react-router-dom";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "Home", href: "/", isHash: false },
-  { label: "About Me", href: "/about", isHash: false },
-  { label: "Project", href: "/project", isHash: false },
-  { label: "Contact", href: "/contact", isHash: false },
+  { label: "Work", href: "/#work" },
+  { label: "About", href: "/#about" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Research", href: "/#writing" },
+  { label: "Contact", href: "/#contact" },
+  { label: "Blog", href: "/blog" },
 ];
+
+const RESUME_URL = "https://drive.google.com/file/d/1eneuROs2fUPfKQi1ItMfS3JdL_3IivnP/view?usp=sharing";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,85 +27,123 @@ export const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <>
-      <nav
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled ? "blur-backdrop bg-background/60 shadow-lg" : "bg-transparent"
-        )}
-      >
-        <div className="container mx-auto pl-18 pr-4">
-          <div className="flex items-center justify-between h-20">
-            <Link
-              to="/"
-              className={cn(
-                "text-2xl font-light tracking-tighter text-glow transition-opacity duration-300",
-                isHome && !isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
-              )}
-            >
-              Shareef
-            </Link>
+  // Handle hash scrolling if navigating with hash
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              {navItems.map((item) => (
-                <Link
+  return (
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b",
+        isScrolled
+          ? "border-border/80 bg-background/80 backdrop-blur-md shadow-xs"
+          : "border-transparent bg-transparent"
+      )}
+    >
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        {/* Brand */}
+        <Link
+          to="/"
+          className="flex items-center gap-1 font-mono text-sm font-medium tracking-tight hover:text-signal transition-colors"
+        >
+          muhammed shareef
+          <span className="caret" aria-hidden="true"></span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-8 md:flex">
+          {navItems.map((item) => {
+            const isExternalHash = item.href.startsWith("/#");
+            const isCurrentPageHash = location.pathname === "/" && isExternalHash;
+
+            if (isCurrentPageHash) {
+              return (
+                <a
                   key={item.label}
-                  to={item.href}
-                  className={cn(
-                    "text-sm font-light text-foreground/80 hover:text-foreground transition-colors",
-                    item.label === "Contact" && "mr-8"
-                  )}
+                  href={item.href.replace("/", "")}
+                  className="font-mono text-xs uppercase tracking-[0.15em] transition-colors hover:text-foreground text-muted-foreground"
                 >
                   {item.label}
-                </Link>
-              ))}
-            </div>
+                </a>
+              );
+            }
 
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? (
-                <X size={24} weight="light" />
-              ) : (
-                <List size={24} weight="light" />
-              )}
-            </button>
-          </div>
-        </div>
-      </nav>
+            return (
+              <Link
+                key={item.label}
+                to={item.href}
+                className="font-mono text-xs uppercase tracking-[0.15em] transition-colors hover:text-foreground text-muted-foreground"
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
 
-      {/* Mobile Menu */}
-      <div
-        className={cn(
-          "fixed top-0 right-0 bottom-0 w-full max-w-sm z-40 bg-background/95 blur-backdrop transform transition-transform duration-300 md:hidden",
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        )}
-      >
-        <div className="flex flex-col items-start gap-6 p-8 mt-20">
-          {navItems.map((item) => (
-            <Link
-              key={item.label}
-              to={item.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-lg font-light text-foreground/80 hover:text-foreground transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
+        {/* Right Action */}
+        <div className="flex items-center gap-3">
+          <a
+            href={RESUME_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="hidden font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:text-foreground sm:inline-flex items-center gap-1 group"
+          >
+            <span>Résumé</span>
+            <ArrowUpRight className="h-3.5 w-3.5 text-signal transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="grid h-9 w-9 place-items-center rounded-md border border-border text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/50 md:hidden"
+          >
+            {isMobileMenuOpen ? (
+              <X className="h-4 w-4" />
+            ) : (
+              <Menu className="h-4 w-4" />
+            )}
+          </button>
         </div>
       </div>
 
-      {/* Overlay */}
+      {/* Mobile Drawer */}
       {isMobileMenuOpen && (
-        <div
-          className="fixed inset-0 bg-background/50 z-30 md:hidden"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
+        <div className="border-b border-border bg-background/95 backdrop-blur-lg px-6 py-6 md:hidden animate-in fade-in slide-in-from-top-4 duration-200">
+          <nav className="flex flex-col gap-4">
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href.startsWith("/#") && location.pathname === "/" ? item.href.replace("/", "") : item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="font-mono text-sm uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground py-1"
+              >
+                {item.label}
+              </a>
+            ))}
+            <div className="pt-2 border-t border-border mt-2">
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="font-mono text-sm uppercase tracking-[0.15em] text-signal flex items-center gap-1.5 py-1"
+              >
+                <span>Résumé</span>
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+          </nav>
+        </div>
       )}
-    </>
+    </header>
   );
 };

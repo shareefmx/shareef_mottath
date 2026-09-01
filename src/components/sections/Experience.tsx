@@ -1,91 +1,89 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { Reveal } from "@/components/Reveal";
 
-const experiences = [
-    {
-        role: "React Front End Developer (Remote Part Time)",
-        company: "GetBeds Tech",
-        period: "February 2025 - September 2025",
-        description: "Developer in GetBeds Tech, a health-tech startup building a seamless hospital bed booking platform.",
-        achievements: [
-            "Developed and maintained the front-end for the GetBeds user website and the internal admin web application, ensuring fast, responsive, and accessible UI experiences.",
-            "Built reusable components and scalable layouts using React, TypeScript, Tailwind CSS, and Node.js, improving development efficiency and consistency across the platform."
-        ]
-    },
-    {
-        role: "Associate Software Engineer Intern (Internship)",
-        company: "PreProd Corp Private Limited",
-        period: "April 2024 - July 2024",
-        achievements: [
-            "Designed and developed responsive web interfaces by transforming wireframes and UI mockups into functional, interactive components using HTML, CSS, JavaScript.",
-            "Implemented dynamic features with reusable components, improving code efficiency and enhancing user interaction.",
-            "Gained hands-on experience with version control (Git) and team collaboration tools to maintain clean code and streamline workflows."
-        ]
-    }
+interface ExperienceItem {
+  period: string;
+  role: string;
+  company: string;
+  description: string;
+  tags: string[];
+}
+
+const experiences: ExperienceItem[] = [
+  {
+    period: "Feb 2025 – Sep 2025",
+    role: "React Developer (Remote Part Time)",
+    company: "GetBeds Tech",
+    description:
+      "Developer in GetBeds Tech, a health-tech startup building a seamless hospital bed booking platform. Developed and maintained the frontend for the user platform and admin dashboard, building 40+ reusable components using React, TypeScript, and Tailwind CSS — delivering 20+ responsive pages in ~40 days, improving UI load performance by ~25%. Built and deployed a custom AI agent powered by Gemini 1.5 Flash designed around internal business specifications — reducing manual workflow handling by ~40% and cutting average task resolution time by ~30%.",
+    tags: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Gemini 1.5 Flash",
+      "AI Agent",
+      "Node.js",
+    ],
+  },
+  {
+    period: "Apr 2024 – Jul 2024",
+    role: "Associate Software Engineer Intern",
+    company: "PreProd Corp Private Limited",
+    description:
+      "Designed and developed responsive web interfaces by transforming wireframes and UI mockups into functional, interactive components using HTML, CSS, and JavaScript. Gained hands-on experience with version control (Git) and team collaboration tools to maintain clean code and streamline agile development cycles.",
+    tags: ["HTML5", "CSS3", "JavaScript", "Git", "UI/UX", "Agile"],
+  },
 ];
 
 export const Experience = () => {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-100px" });
+  return (
+    <section id="experience" className="py-24 md:py-32">
+      <Reveal delay={0}>
+        <div className="mb-12 flex items-baseline gap-4 border-b border-border pb-4">
+          <span className="font-mono text-xs text-signal">03</span>
+          <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            Experience
+          </h2>
+        </div>
+      </Reveal>
 
-    return (
-        <section className="py-32 px-4 bg-secondary/5">
-            <motion.div
-                ref={ref}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8 }}
-                className="container mx-auto max-w-4xl"
-            >
-                <h2 className="text-4xl md:text-5xl font-light tracking-tighter mb-16 text-center">
-                    Experience
-                </h2>
+      <div>
+        {experiences.map((exp, index) => (
+          <Reveal key={exp.company + index} delay={index * 50}>
+            <div className="group grid gap-2 border-b border-border py-8 md:grid-cols-12 md:gap-8">
+              <div className="md:col-span-3">
+                <p className="font-mono text-xs text-muted-foreground">
+                  {exp.period}
+                </p>
+              </div>
 
-                <div className="space-y-12">
-                    {experiences.map((exp, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                            transition={{ duration: 0.5, delay: index * 0.2 }}
-                            className="relative pl-8 md:pl-0"
-                        >
-                            {/* Timeline line for desktop */}
-                            <div className="hidden md:block absolute left-0 top-0 bottom-0 w-px bg-border md:left-1/2 md:-ml-px" />
-
-                            <div className={`md:flex items-center justify-between ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
-                                {/* Timeline dot */}
-                                <div className="absolute left-0 top-0 w-4 h-4 rounded-full bg-primary md:left-1/2 md:-ml-2 mt-1.5" />
-
-                                <div className="md:w-5/12 mb-2 md:mb-0">
-                                    <div className={`text-sm text-muted-foreground mb-1 ${index % 2 === 0 ? "md:text-left" : "md:text-right"}`}>
-                                        {exp.period}
-                                    </div>
-                                </div>
-
-                                <div className="md:w-5/12 bg-card p-6 rounded-xl border border-border/50 hover:border-primary/20 transition-colors duration-300">
-                                    <h3 className="text-xl font-semibold mb-1">{exp.role}</h3>
-                                    <h4 className="text-lg text-primary mb-4">{exp.company}</h4>
-                                    {exp.description && (
-                                        <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                                            {exp.description}
-                                        </p>
-                                    )}
-                                    <ul className="space-y-2">
-                                        {exp.achievements.map((achievement, i) => (
-                                            <li key={i} className="text-sm text-muted-foreground leading-relaxed flex items-start">
-                                                <span className="mr-2 mt-1.5 w-1.5 h-1.5 rounded-full bg-primary/60 shrink-0" />
-                                                {achievement}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                        </motion.div>
-                    ))}
+              <div className="md:col-span-9">
+                <div className="flex flex-wrap items-baseline gap-x-3">
+                  <h3 className="text-lg font-medium text-foreground">
+                    {exp.role}
+                  </h3>
+                  <span className="text-muted-foreground">·</span>
+                  <span className="text-muted-foreground">{exp.company}</span>
                 </div>
-            </motion.div>
-        </section>
-    );
+
+                <p className="mt-2 max-w-2xl leading-relaxed text-muted-foreground text-sm">
+                  {exp.description}
+                </p>
+
+                <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5">
+                  {exp.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-mono text-xs text-muted-foreground/70 hover:text-signal transition-colors"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
 };

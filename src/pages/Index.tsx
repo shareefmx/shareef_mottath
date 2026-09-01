@@ -1,27 +1,29 @@
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/sections/Hero";
-import { FeaturedIn } from "@/components/sections/FeaturedIn";
+import { Principle } from "@/components/sections/Principle";
+import { SelectedWork } from "@/components/sections/SelectedWork";
 import { AboutMe } from "@/components/sections/AboutMe";
 import { Experience } from "@/components/sections/Experience";
-import { Projects } from "@/components/sections/Testimonials";
-import { Features } from "@/components/sections/Features";
-import { Mission } from "@/components/sections/Mission";
+import { Writing } from "@/components/sections/Writing";
+import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/sections/Footer";
-import { ProductShowcase } from "@/components/sections/ProductShowcase";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div id="top" className="relative min-h-screen">
       <Navigation />
-      <Hero />
-      <FeaturedIn />
-      <AboutMe />
-      <ProductShowcase />
-      <Experience />
-      <Features />
-      <Projects />
-      <Mission />
+      <main className="mx-auto max-w-5xl px-6">
+        <Hero />
+        <Principle />
+        <SelectedWork />
+        <AboutMe />
+        <Experience />
+        <Writing />
+        <ContactSection />
+      </main>
       <Footer />
+      <ThemeToggle />
     </div>
   );
 };

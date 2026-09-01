@@ -1,25 +1,44 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.png" media="(prefers-color-scheme: light)" />
   <link rel="icon" href="/favicon1.png" media="(prefers-color-scheme: dark)" />
-  <title>Shareef Portfolio</title>
-  <meta name="description"
-    content="Automate your crypto trading with advanced AI algorithms. Trade smarter with Lunexa's sophisticated trading platform." />
-  <meta name="author" content="Shareef M" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Geist+Mono:wght@300;400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <meta property="og:title" content="e0f10c04-e1c5-4c42-8bc2-f5635d249e2c" />
-  <meta property="og:description" content="Shareef Portfolio" />
+  <title>Muhammed Shareef M — AI/ML Engineer</title>
+  <meta name="description"
+    content="AI/ML Engineer and MERN Stack Developer building AI agents, RAG pipelines, intelligent automation workflows, and full-stack production applications." />
+  <meta name="author" content="Muhammed Shareef M" />
+
+  <meta property="og:title" content="Muhammed Shareef M — AI/ML Engineer" />
+  <meta property="og:description" content="AI/ML Engineer and MERN Stack Developer building AI agents, RAG pipelines, intelligent automation workflows, and full-stack production applications." />
   <meta property="og:type" content="website" />
 
-
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Muhammed Shareef M — AI/ML Engineer" />
+  <meta name="twitter:description" content="AI/ML Engineer and MERN Stack Developer building AI agents, RAG pipelines, intelligent automation workflows, and full-stack production applications." />
+
+  <script>
+    (function() {
+      try {
+        const theme = localStorage.getItem('theme') || 'dark';
+        if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
-<body>
+<body class="grain font-sans">
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
