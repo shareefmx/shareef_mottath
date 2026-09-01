@@ -6,6 +6,7 @@ import { TechnicalSkills } from "@/components/sections/TechnicalSkills";
 import { Badges } from "@/components/sections/Badges";
 import { AboutMe } from "@/components/sections/AboutMe";
 import { Experience } from "@/components/sections/Experience";
+import { Education } from "@/components/sections/Education";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/sections/Footer";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -22,6 +23,7 @@ const Index = () => {
         <Badges />
         <AboutMe />
         <Experience />
+        <Education />
         <ContactSection />
       </main>
       <Footer />
