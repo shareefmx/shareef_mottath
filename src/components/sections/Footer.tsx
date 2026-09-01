@@ -7,7 +7,7 @@ export const Footer = () => {
             Muhammed Shareef M
           </p>
           <p className="mt-3 font-mono text-xs text-muted-foreground">
-            ai/ml engineer <span className="text-signal">|</span> mern stack developer <span className="text-signal">|</span> building intelligent systems
+            AI/ML Engineer <span className="text-signal">|</span> MERN Stack Developer <span className="text-signal">|</span> Building Intelligent Systems
           </p>
         </div>
         <a
