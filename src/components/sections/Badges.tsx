@@ -70,6 +70,7 @@ const professionalBadges: BadgeItem[] = [
     issuer: "Oracle",
     date: "2024",
     category: "Cloud AI",
+    verifyUrl: "https://catalog-education.oracle.com/pls/certview/sharebadge?id=155D94266652EBE45F2917A6C1D789494855C901E09A661AA2F8DDE8C9E26A71",
     description: "Cloud-native AI services, foundational machine learning algorithms, deep learning pipelines, and generative AI services.",
     skills: ["Oracle Cloud", "AI Services", "Machine Learning"],
   },
@@ -78,6 +79,7 @@ const professionalBadges: BadgeItem[] = [
     issuer: "n8n",
     date: "2025",
     category: "Workflow Automation",
+    verifyUrl: "https://learn.n8n.io/certificates/a109bb1d1a5c43438f69a40afe0068cb",
     description: "Enterprise workflow automation, custom node engineering, webhook orchestration, and multi-service AI integrations.",
     skills: ["n8n Workflows", "Webhooks", "API Orchestration"],
   },
@@ -219,7 +221,7 @@ export const Badges = () => {
                     rel="noreferrer"
                     className="group/link ml-auto inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground hover:text-signal transition-colors"
                   >
-                    <span>Credly</span>
+                    <span>{badge.verifyUrl.includes("credly") ? "Credly" : "Verify"}</span>
                     <ArrowUpRight className="h-3 w-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                   </a>
                 )}
